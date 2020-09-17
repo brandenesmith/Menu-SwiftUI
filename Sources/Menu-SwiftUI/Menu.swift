@@ -8,19 +8,19 @@
 import Foundation
 import SwiftUI
 
-struct Menu<CenterView: View, LeftView: View>: View {
+public struct Menu<CenterView: View, LeftView: View>: View {
     @ObservedObject private var viewModel = MenuViewModel()
 
     private let centerView: CenterView
     private let leftView: LeftView
 
-    var body: some View {
+    public var body: some View {
         ZStack {
 
         }
     }
 
-    init(centerView: CenterView, leftView: LeftView) {
+    public init(centerView: CenterView, leftView: LeftView) {
         self.centerView = centerView
         self.leftView = leftView
     }
