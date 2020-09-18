@@ -358,7 +358,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "file://../";
 			requirement = {
-				branch = feature/AddMenu;
+				branch = master;
 				kind = branch;
 			};
 		};
