@@ -20,7 +20,7 @@ final class MenuViewModel: ObservableObject {
 
     @Published private(set) var currentLeftContentLeadingEdge: CGFloat = 0.0
 
-    private let leftViewWidth: CGFloat = UIScreen.main.bounds.width * 0.8
+    let leftViewWidth: CGFloat = UIScreen.main.bounds.width * 0.8
 
     private var addLeftViewStream: AnyCancellable?
     private var updateLeadingEdgesStream: AnyCancellable?

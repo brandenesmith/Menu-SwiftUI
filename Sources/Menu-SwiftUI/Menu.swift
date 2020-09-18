@@ -37,10 +37,9 @@ public struct Menu<CenterView: View, LeftView: View>: View {
                     .transition(
                         AnyTransition.asymmetric(
                             insertion: .slide,
-                            removal: .offset(x: viewModel.currentLeftContentLeadingEdge, y: 0)
+                            removal: .offset(x: -viewModel.leftViewWidth, y: 0)
                         )
                     )
-                    .animation(.default)
             }
             centerView
                 .frame(
