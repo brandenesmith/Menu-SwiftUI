@@ -119,7 +119,7 @@ final class MenuViewModel: ObservableObject {
 
     @objc private func toggleMenuState(_ sender: Notification) {
         withAnimation {
-            menuState = (menuState == .open || menuState == .isOpening) ? .open : .closed
+            menuState = (menuState == .open || menuState == .isOpening) ? .closed : .open
         }
     }
 }
