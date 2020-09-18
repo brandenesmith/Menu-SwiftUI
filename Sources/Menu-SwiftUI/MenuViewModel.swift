@@ -45,6 +45,13 @@ final class MenuViewModel: ObservableObject {
             .filter({ $0 == .closed || $0 == .open })
             .map({ return $0 == .closed ? 0.0 : self.leftViewWidth })
             .assign(to: \.currentCenterContentLeadingEdge, on: self)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(setMenuState(_:)),
+            name: .setMenuState,
+            object: nil
+        )
     }
 
     func draggingChanged(with value: DragGesture.Value) {
@@ -107,6 +114,14 @@ final class MenuViewModel: ObservableObject {
             return max(0, leftViewWidth + value)
         default:
             return currentCenterContentLeadingEdge
+        }
+    }
+
+    @objc private func setMenuState(_ sender: Notification) {
+        guard let open: Bool = sender.object as? Bool else { return }
+
+        withAnimation {
+            menuState = open ? .open : .closed
         }
     }
 }
