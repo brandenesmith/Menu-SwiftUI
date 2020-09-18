@@ -99,7 +99,7 @@ final class MenuViewModel: ObservableObject {
         case .isOpening:
             return max(value, leftViewWidth)
         case .isClosing:
-            return min(0, value)
+            return min(0, leftViewWidth - value)
         default:
             return currentCenterContentLeadingEdge
         }
