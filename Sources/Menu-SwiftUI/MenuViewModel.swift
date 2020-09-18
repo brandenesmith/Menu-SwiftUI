@@ -49,6 +49,7 @@ final class MenuViewModel: ObservableObject {
 
     func draggingChanged(with value: DragGesture.Value) {
         updateStateForDraggingChanged()
+        currentCenterContentLeadingEdge = boundedCenterContentLeadingEdge(for: value.translation.width)
     }
 
     func draggingEnded(with value: DragGesture.Value) {
@@ -78,6 +79,17 @@ final class MenuViewModel: ObservableObject {
             menuState = (isOneQuarterClosed) ? .closed : .open
         case .open, .closed:
             break
+        }
+    }
+
+    private func boundedCenterContentLeadingEdge(for value: CGFloat) -> CGFloat {
+        switch menuState {
+        case .isOpening:
+            return max(value, leftViewWidth)
+        case .isClosing:
+            return min(0, value)
+        default:
+            return currentCenterContentLeadingEdge
         }
     }
 }
