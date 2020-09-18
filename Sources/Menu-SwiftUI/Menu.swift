@@ -19,7 +19,7 @@ public struct Menu<CenterView: View, LeftView: View>: View {
             .onChanged(viewModel.draggingChanged(with:))
             .onEnded(viewModel.draggingEnded(with:))
             .simultaneously(
-                with: (viewModel.menuState == .closed) ? TapGesture()
+                with: (viewModel.menuState == .open) ? TapGesture()
                     .onEnded(viewModel.tapEnded)
                     : nil
             )
