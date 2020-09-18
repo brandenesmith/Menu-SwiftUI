@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Menu-SwiftUI",
+        "repositoryURL": "/Users/brandensmith/Documents/Develop/Menu-SwiftUI",
+        "state": {
+          "branch": "feature/AddMenu",
+          "revision": "6b89fa7b02665eda3dd1d9cedf0303fad5845944",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

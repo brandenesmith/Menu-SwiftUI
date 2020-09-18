@@ -12,13 +12,13 @@ import SwiftUI
 final class MenuViewModel: ObservableObject {
     @Published var menuState: MenuState
     @Published var addLeftView: Bool
+    @Published private(set) var currentLeftContentLeadingEdge: CGFloat = 0.0
+
     @Published private(set) var currentCenterContentLeadingEdge: CGFloat = 0.0 {
         didSet {
             currentLeftContentLeadingEdge = currentCenterContentLeadingEdge - leftViewWidth
         }
     }
-
-    @Published private(set) var currentLeftContentLeadingEdge: CGFloat = 0.0
 
     let leftViewWidth: CGFloat = UIScreen.main.bounds.width * 0.8
 

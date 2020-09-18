@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Menu_SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Menu(
+            centerView: CenterView(viewModel: CenterViewModel()),
+            leftView: LeftView(viewModel: LeftViewModel())
+        )
     }
 }
 
