@@ -49,10 +49,7 @@ final class MenuViewModel: ObservableObject {
 
     func draggingChanged(with value: DragGesture.Value) {
         updateStateForDraggingChanged(given: value.translation.width)
-
-        withAnimation {
-            currentCenterContentLeadingEdge = boundedCenterContentLeadingEdge(for: value.translation.width)
-        }
+        currentCenterContentLeadingEdge = boundedCenterContentLeadingEdge(for: value.translation.width)
     }
 
     func draggingEnded(with value: DragGesture.Value) {
