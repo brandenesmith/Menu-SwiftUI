@@ -34,7 +34,12 @@ public struct Menu<CenterView: View, LeftView: View>: View {
                         height: UIScreen.main.bounds.height
                     )
                     .offset(x: viewModel.currentLeftContentLeadingEdge, y: 0)
-                    .transition(AnyTransition.asymmetric(insertion: .slide, removal: .offset()))
+                    .transition(
+                        AnyTransition.asymmetric(
+                            insertion: .slide,
+                            removal: .offset(x: viewModel.currentLeftContentLeadingEdge, y: 0)
+                        )
+                    )
             }
             centerView
                 .frame(
