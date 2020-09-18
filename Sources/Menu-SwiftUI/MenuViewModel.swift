@@ -60,7 +60,7 @@ final class MenuViewModel: ObservableObject {
     }
 
     func tapEnded() {
-        menuState = .closed
+        withAnimation { menuState = .closed }
     }
 
     private func updateStateForDraggingChanged(given value: CGFloat) {
