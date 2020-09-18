@@ -18,8 +18,7 @@ final class MenuViewModel: ObservableObject {
     private let leftViewWidth: CGFloat = UIScreen.main.bounds.width * 0.8
 
     private var addLeftViewStream: AnyCancellable?
-    private var updateCurrentCenterLeadingEdgeStream: AnyCancellable?
-    private var updateCurrentLeftContentLeadingEdgeStream: AnyCancellable?
+    private var updateLeadingEdgesStream: AnyCancellable?
 
     private var isOneQuarterOpen: Bool {
         return currentCenterContentLeadingEdge > leftViewWidth / 4.0
@@ -37,14 +36,15 @@ final class MenuViewModel: ObservableObject {
             .map({ $0 != .closed })
             .assign(to: \.addLeftView, on: self)
 
-        updateCurrentCenterLeadingEdgeStream = $menuState
+        updateLeadingEdgesStream = $menuState
             .filter({ $0 == .closed || $0 == .open })
             .map({ return $0 == .closed ? 0.0 : self.leftViewWidth })
-            .assign(to: \.currentCenterContentLeadingEdge, on: self)
+            .sink(receiveValue: { [weak self] value in
+                guard let self = self else { return }
 
-        updateCurrentLeftContentLeadingEdgeStream = $currentCenterContentLeadingEdge
-            .map({ value in value - self.leftViewWidth })
-            .assign(to: \.currentLeftContentLeadingEdge, on: self)
+                self.currentCenterContentLeadingEdge = value
+                self.currentLeftContentLeadingEdge = value - self.leftViewWidth
+            })
     }
 
     func draggingChanged(with value: DragGesture.Value) {
