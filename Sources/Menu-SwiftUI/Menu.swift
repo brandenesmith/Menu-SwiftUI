@@ -43,6 +43,9 @@ public struct Menu<CenterView: View, LeftView: View>: View {
                                 removal: .offset(x: -viewModel.leftViewWidth, y: 0)
                             )
                         )
+                        .onAppear {
+                            print("height: \(frame.height), width: \(frame.width)")
+                        }
                 }
             }
             .edgesIgnoringSafeArea([.top, .bottom])
