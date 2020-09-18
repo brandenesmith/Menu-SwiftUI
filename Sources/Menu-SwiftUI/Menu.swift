@@ -33,12 +33,14 @@ public struct Menu<CenterView: View, LeftView: View>: View {
                         width: UIScreen.main.bounds.width,
                         height: UIScreen.main.bounds.height
                     )
+                    .offset(x: viewModel.currentCenterContentLeadingEdge, y: 0)
             }
             centerView
                 .frame(
                     width: UIScreen.main.bounds.width,
                     height: UIScreen.main.bounds.height
                 )
+                .offset(x: viewModel.currentCenterContentLeadingEdge, y: 0.0)
                 .gesture(combinedGesture)
         }
     }
