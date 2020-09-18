@@ -56,7 +56,9 @@ final class MenuViewModel: ObservableObject {
     }
 
     func draggingEnded(with value: DragGesture.Value) {
-        updateStateForDraggingEnded()
+        withAnimation {
+            updateStateForDraggingEnded()
+        }
     }
 
     func tapEnded() {
