@@ -12,7 +12,12 @@ import SwiftUI
 final class MenuViewModel: ObservableObject {
     @Published var menuState: MenuState
     @Published var addLeftView: Bool
-    @Published private(set) var currentCenterContentLeadingEdge: CGFloat = 0.0
+    @Published private(set) var currentCenterContentLeadingEdge: CGFloat = 0.0 {
+        didSet {
+            currentLeftContentLeadingEdge = currentCenterContentLeadingEdge - leftViewWidth
+        }
+    }
+
     @Published private(set) var currentLeftContentLeadingEdge: CGFloat = 0.0
 
     private let leftViewWidth: CGFloat = UIScreen.main.bounds.width * 0.8
@@ -39,12 +44,7 @@ final class MenuViewModel: ObservableObject {
         updateLeadingEdgesStream = $menuState
             .filter({ $0 == .closed || $0 == .open })
             .map({ return $0 == .closed ? 0.0 : self.leftViewWidth })
-            .sink(receiveValue: { [weak self] value in
-                guard let self = self else { return }
-
-                self.currentCenterContentLeadingEdge = value
-                self.currentLeftContentLeadingEdge = value - self.leftViewWidth
-            })
+            .assign(to: \.currentCenterContentLeadingEdge, on: self)
     }
 
     func draggingChanged(with value: DragGesture.Value) {
