@@ -10,9 +10,11 @@ import SwiftUI
 
 final class MenuViewModel: ObservableObject {
     @Published var menuState: MenuState
+    @Published var addLeftView: Bool
 
     init() {
         menuState = .closed
+        addLeftView = false
     }
 
     func draggingChanged(with value: DragGesture.Value) {

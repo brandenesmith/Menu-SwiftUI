@@ -27,7 +27,18 @@ public struct Menu<CenterView: View, LeftView: View>: View {
 
     public var body: some View {
         ZStack {
+            if viewModel.addLeftView {
+                leftView
+                    .frame(
+                        width: UIScreen.main.bounds.width,
+                        height: UIScreen.main.bounds.height
+                    )
+            }
             centerView
+                .frame(
+                    width: UIScreen.main.bounds.width,
+                    height: UIScreen.main.bounds.height
+                )
                 .gesture(combinedGesture)
         }
     }
