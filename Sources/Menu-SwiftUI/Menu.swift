@@ -27,25 +27,27 @@ public struct Menu<CenterView: View, LeftView: View>: View {
 
     public var body: some View {
         ZStack {
-            if viewModel.addLeftView {
-                leftView
-                    .frame(
-                        width: UIScreen.main.bounds.width,
-                        height: UIScreen.main.bounds.height
-                    )
-                    .offset(x: viewModel.currentLeftContentLeadingEdge, y: 0)
-                    .transition(
-                        AnyTransition.asymmetric(
-                            insertion: .slide,
-                            removal: .offset(x: -viewModel.leftViewWidth, y: 0)
+            GeometryReader { geometry in
+                let frame = geometry.frame(in: .local)
+
+                if viewModel.addLeftView {
+                    leftView
+                        .frame(
+                            width: viewModel.leftViewWidth,
+                            height: frame.height
                         )
-                    )
+                        .offset(x: viewModel.currentLeftContentLeadingEdge, y: 0)
+                        .transition(
+                            AnyTransition.asymmetric(
+                                insertion: .slide,
+                                removal: .offset(x: -viewModel.leftViewWidth, y: 0)
+                            )
+                        )
+                }
             }
+            .edgesIgnoringSafeArea([.top, .bottom])
+
             centerView
-                .frame(
-                    width: UIScreen.main.bounds.width,
-                    height: UIScreen.main.bounds.height
-                )
                 .offset(x: viewModel.currentCenterContentLeadingEdge, y: 0.0)
                 .gesture(combinedGesture)
         }
