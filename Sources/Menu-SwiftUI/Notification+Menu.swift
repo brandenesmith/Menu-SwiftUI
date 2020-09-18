@@ -8,11 +8,9 @@
 import Foundation
 
 public extension Notification.Name {
-    static let setMenuState = Notification.Name("setMenuState")
+    static let toggleMenuState = Notification.Name("toggleMenuState")
 }
 
 public extension Notification {
-    static func setMenuState(to open: Bool) -> Notification {
-        return Notification(name: .setMenuState, object: open, userInfo: nil)
-    }
+    static let toggleMenuState = Notification(name: .toggleMenuState)
 }

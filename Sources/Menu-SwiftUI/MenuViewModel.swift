@@ -48,8 +48,8 @@ final class MenuViewModel: ObservableObject {
 
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(setMenuState(_:)),
-            name: .setMenuState,
+            selector: #selector(toggleMenuState(_:)),
+            name: .toggleMenuState,
             object: nil
         )
     }
@@ -117,11 +117,9 @@ final class MenuViewModel: ObservableObject {
         }
     }
 
-    @objc private func setMenuState(_ sender: Notification) {
-        guard let open: Bool = sender.object as? Bool else { return }
-
+    @objc private func toggleMenuState(_ sender: Notification) {
         withAnimation {
-            menuState = open ? .open : .closed
+            menuState = (menuState == .open || menuState == .isOpening) ? .open : .closed
         }
     }
 }
