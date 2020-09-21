@@ -27,27 +27,47 @@ public struct Menu<CenterView: View, LeftView: View>: View {
 
     public var body: some View {
         ZStack {
-            if viewModel.addLeftView {
-                leftView
-                    .frame(
-                        width: UIScreen.main.bounds.width,
-                        height: UIScreen.main.bounds.height
-                    )
-                    .offset(x: viewModel.currentLeftContentLeadingEdge, y: 0)
-                    .transition(
-                        AnyTransition.asymmetric(
-                            insertion: .slide,
-                            removal: .offset(x: -viewModel.leftViewWidth, y: 0)
+            GeometryReader { geometry in
+                let frame = geometry.frame(in: .local)
+
+                if viewModel.addLeftView {
+                    leftView
+                        .frame(
+                            width: viewModel.leftViewWidth,
+                            height: frame.height
                         )
-                    )
+                        .offset(x: viewModel.currentLeftContentLeadingEdge, y: 0)
+                        .transition(
+                            AnyTransition.asymmetric(
+                                insertion: .slide,
+                                removal: .offset(x: -viewModel.leftViewWidth, y: 0)
+                            )
+                        )
+                        .onAppear {
+                            print("height: \(frame.height), width: \(frame.width)")
+                        }
+                }
             }
+            .edgesIgnoringSafeArea([.top, .bottom])
+
             centerView
-                .frame(
-                    width: UIScreen.main.bounds.width,
-                    height: UIScreen.main.bounds.height
-                )
                 .offset(x: viewModel.currentCenterContentLeadingEdge, y: 0.0)
                 .gesture(combinedGesture)
+
+            GeometryReader { geometry in
+                let frame = geometry.frame(in: CoordinateSpace.local)
+
+                Rectangle()
+                    .frame(width: viewModel.currentCenterContentLeadingEdge, height: frame.height, alignment: .center)
+                    .foregroundColor(
+                        Color.black.opacity(
+                            Double(viewModel.currentCenterContentLeadingEdge / viewModel.leftViewWidth) * 0.001
+                        )
+                    )
+                    .offset(x: viewModel.currentCenterContentLeadingEdge)
+                    .highPriorityGesture(combinedGesture, including: .gesture)
+            }
+            .edgesIgnoringSafeArea([.top, .bottom])
         }
     }
 
