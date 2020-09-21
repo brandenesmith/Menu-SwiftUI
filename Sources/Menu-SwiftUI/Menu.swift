@@ -53,6 +53,21 @@ public struct Menu<CenterView: View, LeftView: View>: View {
             centerView
                 .offset(x: viewModel.currentCenterContentLeadingEdge, y: 0.0)
                 .gesture(combinedGesture)
+
+            GeometryReader { geometry in
+                let frame = geometry.frame(in: CoordinateSpace.local)
+
+                Rectangle()
+                    .frame(width: viewModel.currentCenterContentLeadingEdge, height: frame.height, alignment: .center)
+                    .foregroundColor(
+                        Color.black.opacity(
+                            Double(viewModel.currentCenterContentLeadingEdge / viewModel.leftViewWidth) * 0.001
+                        )
+                    )
+                    .offset(x: viewModel.currentCenterContentLeadingEdge)
+                    .highPriorityGesture(combinedGesture, including: .gesture)
+            }
+            .edgesIgnoringSafeArea([.top, .bottom])
         }
     }
 
