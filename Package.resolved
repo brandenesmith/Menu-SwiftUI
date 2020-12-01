@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Swixtensions",
+        "repositoryURL": "https://github.com/brandenesmith/Swixtensions.git",
+        "state": {
+          "branch": "feature/AnimationCompletionModifier",
+          "revision": "d2afedab6f08694a0fa8236be6a24f412d9a92e4",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
