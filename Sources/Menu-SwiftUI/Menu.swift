@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Swixtensions
 
 public struct Menu<CenterView: View, LeftView: View>: View {
     @ObservedObject private var viewModel = MenuViewModel()
@@ -50,6 +51,9 @@ public struct Menu<CenterView: View, LeftView: View>: View {
             centerView
                 .offset(x: viewModel.currentCenterContentLeadingEdge, y: 0.0)
                 .gesture(combinedGesture)
+                .onAnimationCompleted(for: viewModel.currentCenterContentLeadingEdge) {
+                    NotificationCenter.default.post(.menuAnimationFinished)
+                }
 
             GeometryReader { geometry in
                 let frame = geometry.frame(in: CoordinateSpace.local)

@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Swixtensions",
+        "repositoryURL": "https://github.com/brandenesmith/Swixtensions.git",
+        "state": {
+          "branch": "master",
+          "revision": "b5e158656f7df330e5b26de52bbaf26911c128c6",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
