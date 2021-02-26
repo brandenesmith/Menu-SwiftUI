@@ -5,8 +5,8 @@
         "package": "Swixtensions",
         "repositoryURL": "https://github.com/brandenesmith/Swixtensions.git",
         "state": {
-          "branch": "master",
-          "revision": "b5e158656f7df330e5b26de52bbaf26911c128c6",
+          "branch": null,
+          "revision": "951d524aac0a18615f67b51f22523c895f9148a6",
           "version": null
         }
       }
