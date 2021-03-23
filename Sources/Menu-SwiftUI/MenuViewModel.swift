@@ -55,6 +55,8 @@ final class MenuViewModel: ObservableObject {
     }
 
     func draggingChanged(with value: DragGesture.Value) {
+        guard abs(value.translation.width) >= abs(value.translation.height) else { return }
+        
         updateStateForDraggingChanged(given: value.translation.width)
 
         withAnimation {
