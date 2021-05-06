@@ -19,7 +19,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(
             url: "https://github.com/brandenesmith/Swixtensions.git",
-            .revision("951d524aac0a18615f67b51f22523c895f9148a6")
+            .revision("ad267b26eb761678667196e68824cef7192a9808")
         )
     ],
     targets: [
